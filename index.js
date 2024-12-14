@@ -4,13 +4,13 @@ const app = express();
 const path = require('path');
 const { Server } = require('socket.io');
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server);  
 
 io.on('connection', (socket) => {
     socket.on('user-message', (data) => {
         const selfData = { ...data, self: true };
-        socket.emit('message', selfData); // Send to the user themselves
-        socket.broadcast.emit('message', data); // Send to everyone else
+        socket.emit('message', selfData); 
+        socket.broadcast.emit('message', data); 
     });
 });
 
